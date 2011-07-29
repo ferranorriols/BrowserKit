@@ -240,7 +240,7 @@ abstract class Client
     public function request($method, $uri, array $parameters = array(), array $files = array(), array $server = array(), $content = null, $changeHistory = true)
     {
         $uri = $this->getAbsoluteUri($uri);
-
+        $uri = str_replace(" ","%20",$uri);
         $server = array_merge($this->server, $server);
         if (!$this->history->isEmpty()) {
             $server['HTTP_REFERER'] = $this->history->current()->getUri();
